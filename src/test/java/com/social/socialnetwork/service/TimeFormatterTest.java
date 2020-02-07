@@ -21,7 +21,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-03T10:15:40.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 10 seconds )");
+        Assertions.assertThat(difference).isEqualTo("( 10 seconds ago )");
     }
 
     @Test
@@ -30,7 +30,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-03T10:16:29.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 59 seconds )");
+        Assertions.assertThat(difference).isEqualTo("( 59 seconds ago )");
     }
 
     @Test
@@ -39,7 +39,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-03T10:16:31.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 1 minutes )");
+        Assertions.assertThat(difference).isEqualTo("( 1 minutes ago )");
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-03T11:15:29.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 59 minutes )");
+        Assertions.assertThat(difference).isEqualTo("( 59 minutes ago )");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-03T11:16:31.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 1 hours )");
+        Assertions.assertThat(difference).isEqualTo("( 1 hours ago )");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-04T09:15:33.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 23 hours )");
+        Assertions.assertThat(difference).isEqualTo("( 23 hours ago )");
     }
     @Test
     void shouldReturnDays() {
@@ -74,7 +74,7 @@ public class TimeFormatterTest extends UtilsTests {
         Instant after = Instant.parse("2019-01-06T11:16:31.00Z");
 
         final String difference = new TimeFormatter(start, after).getDifference();
-        Assertions.assertThat(difference).isEqualTo("( 3 days )");
+        Assertions.assertThat(difference).isEqualTo("( 3 days ago )");
     }
 
 
