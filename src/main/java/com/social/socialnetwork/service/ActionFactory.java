@@ -1,44 +1,45 @@
 package com.social.socialnetwork.service;
 
-import com.social.socialnetwork.SocialUserRepository;
-import com.social.socialnetwork.domain.Post;
-import com.social.socialnetwork.domain.SocialUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
- * 2020/02/06
- *
- * @author Sirius
+ * factory that managed action of social network
  */
 @Service
 public class ActionFactory {
 
-    private final SocialUserRepository socialUserRepository;
+    private Action posting;
 
-    public ActionFactory(SocialUserRepository socialUserRepository) {
-        this.socialUserRepository = socialUserRepository;
+    private Action userPage;
+
+    private Action following;
+
+    private Action wall;
+
+    public ActionFactory(Action posting, Action userPage, Action following, Action wall) {
+        this.posting = posting;
+        this.userPage = userPage;
+        this.following = following;
+        this.wall = wall;
     }
 
     @Transactional
-    public void print() {
+    public List<ShowData> doAction(String action) {
 
-        final SocialUser socialUser = new SocialUser();
-        socialUser.setUsername("Alice");
-        final Post post = new Post();
-        post.setMessage("Ciao");
-        final Set<Post> post1 = new HashSet<>();
-        post1.add(post);
-        socialUser.setPosts(post1);
-
-
-        socialUserRepository.save(socialUser);
-        for (SocialUser user : socialUserRepository.findAll()) {
-            System.out.println(user.toString());
+        if (action.contains("->")) {
+            return posting.action(action);
+        }
+        if (action.contains("follows")) {
+            return following.action(action);
+        }
+        if (action.contains("wall")) {
+            return wall.action(action);
         }
 
+        // assumo che sia solamente il nome dell'utente
+        return userPage.action(action);
     }
 }

@@ -1,15 +1,10 @@
-package com.social.socialnetwork.domain;
+package com.social.socialnetwork.entity;
 
 import javax.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * 2020/02/06
- *
- * @author Sirius
- */
 @Entity
 @Table
 public class SocialUser {
@@ -20,19 +15,11 @@ public class SocialUser {
 
     private String username;
 
-    @OneToMany(mappedBy = "socialUsers")
+    @OneToMany(mappedBy = "socialUsers", cascade = CascadeType.ALL)
     private Set<Post> posts = new HashSet<>();
 
-    @OneToMany(mappedBy = "socialUsers")
-    private Set<Follow> followers;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "socialUsers", cascade = CascadeType.ALL)
+    private Set<Follow> followers = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -50,6 +37,10 @@ public class SocialUser {
         this.posts = posts;
     }
 
+    public void addPost(Post post) {
+        this.posts.add(post);
+    }
+
     public Set<Follow> getFollowers() {
         return followers;
     }
@@ -57,4 +48,9 @@ public class SocialUser {
     public void setFollowers(Set<Follow> followers) {
         this.followers = followers;
     }
+
+    public void addFollower(Follow follow) {
+        this.followers.add(follow);
+    }
+
 }

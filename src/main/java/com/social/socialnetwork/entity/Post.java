@@ -1,24 +1,24 @@
-package com.social.socialnetwork.domain;
+package com.social.socialnetwork.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.social.socialnetwork.service.ShowData;
 
 import javax.persistence.*;
 
-/**
- * 2020/02/06
- *
- * @author Sirius
- */
+import java.time.Instant;
+
+
 @Entity
 @Table
-public class Post {
+public class Post implements ShowData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long social_user_id;
-
     private String message;
+    @ManyToOne
+    private SocialUser socialUsers;
+
+    private Instant creationDate;
 
     public Post() {
     }
@@ -39,14 +39,29 @@ public class Post {
         this.message = message;
     }
 
-    @ManyToOne
-    private SocialUser socialUsers;
-
     public SocialUser getSocialUsers() {
         return socialUsers;
     }
 
     public void setSocialUsers(SocialUser socialUsers) {
         this.socialUsers = socialUsers;
+    }
+
+    public Instant getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Instant creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    @Override
+    public String print() {
+        return getMessage();
+    }
+
+    @Override
+    public Instant getData() {
+        return Instant.now();
     }
 }
