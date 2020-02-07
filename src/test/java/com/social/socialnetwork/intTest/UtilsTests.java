@@ -1,5 +1,6 @@
 package com.social.socialnetwork.intTest;
 
+import com.social.socialnetwork.SocialNetworkApplicationTest;
 import com.social.socialnetwork.entity.Post;
 import com.social.socialnetwork.entity.SocialUser;
 import com.social.socialnetwork.reporistory.FollowRepository;
@@ -22,7 +23,7 @@ import java.util.TimeZone;
  *
  * @author Sirius
  */
-@SpringBootTest
+@SpringBootTest(classes = SocialNetworkApplicationTest.class)
 public class UtilsTests {
     @MockBean
     protected Clock clock;

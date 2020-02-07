@@ -6,11 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Scanner;
 
 @SpringBootApplication
+@Profile("dev")
 public class SocialNetworkApplication {
 
     public static void main(String[] args) {
@@ -23,18 +25,18 @@ public class SocialNetworkApplication {
 
         return (args) -> {
 
-//            String input = "";
-//
-//            while (!input.equals("exit")) {
-//
-//                Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-//                input = myObj.nextLine();  // Read user input
-//
-//                for (ShowData show : actionFactory.doAction(input)) {
-//                    System.out.println(show.print());
-//                }
-//
-//            }
+            String input = "";
+
+            while (!input.equals("exit")) {
+
+                Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+                input = myObj.nextLine();  // Read user input
+
+                for (ShowData show : actionFactory.doAction(input)) {
+                    System.out.println(show.print());
+                }
+
+            }
 
         };
     }
