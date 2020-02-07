@@ -1,6 +1,0 @@
-com/social/socialnetwork/domain/Follow.class
-com/social/socialnetwork/domain/SocialUser.class
-com/social/socialnetwork/domain/Post.class
-com/social/socialnetwork/service/ActionFactory.class
-com/social/socialnetwork/SocialUserRepository.class
-com/social/socialnetwork/SocialNetworkApplication.class
