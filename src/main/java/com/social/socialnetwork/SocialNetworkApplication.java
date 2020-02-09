@@ -1,6 +1,6 @@
 package com.social.socialnetwork;
 
-import com.social.socialnetwork.service.ActionFactory;
+import com.social.socialnetwork.service.ActionMaker;
 import com.social.socialnetwork.service.ShowData;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,11 +21,12 @@ public class SocialNetworkApplication {
 
     @Bean
     @Transactional
-    public CommandLineRunner bookDemo(ActionFactory actionFactory) {
+    public CommandLineRunner bookDemo(ActionMaker actionFactory) {
 
         return (args) -> {
 
             String input = "";
+            System.out.println("social network starts...");
 
             while (!input.equals("exit")) {
 

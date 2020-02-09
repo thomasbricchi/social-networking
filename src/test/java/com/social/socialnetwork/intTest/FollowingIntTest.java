@@ -2,7 +2,7 @@ package com.social.socialnetwork.intTest;
 
 import com.social.socialnetwork.entity.Follow;
 import com.social.socialnetwork.entity.SocialUser;
-import com.social.socialnetwork.service.ActionFactory;
+import com.social.socialnetwork.service.ActionMaker;
 import com.social.socialnetwork.service.ShowData;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,8 @@ import java.util.Set;
 
 class FollowingIntTest extends UtilsTests {
 
-
     @Autowired
-    private ActionFactory target;
-
+    private ActionMaker target;
 
     @Test
     @Transactional
@@ -28,12 +26,10 @@ class FollowingIntTest extends UtilsTests {
         final List<ShowData> showData = target.doAction("user1 follows user2");
         Assertions.assertThat(showData).hasSize(0);
 
-        Assertions.assertThat(getMyFollower()).hasSize(1);
-        Assertions.assertThat(getMyFollower().stream().findFirst().get().getFollowedUser()).isEqualTo(user2);
-    }
+        final Set<Follow> userFollow = socialUserRepository.findByUsernameIgnoreCase("user1").get().getFollowers();
 
-    private Set<Follow> getMyFollower() {
-        return socialUserRepository.findByUsernameIgnoreCase("user1").get().getFollowers();
+        Assertions.assertThat(userFollow).hasSize(1);
+        Assertions.assertThat(userFollow.stream().findFirst().get().getFollowedUser()).isEqualTo(user2);
     }
 
 }

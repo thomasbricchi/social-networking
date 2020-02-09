@@ -15,9 +15,12 @@ public class SocialUser {
 
     private String username;
 
+
+    // dovrebbe essere fetch = FetchType.LAZY, me assumo che non ci siano molti post per quello la lascio Eager come di default
     @OneToMany(mappedBy = "socialUsers", cascade = CascadeType.ALL)
     private Set<Post> posts = new HashSet<>();
 
+    // stessa cosa per i follow
     @OneToMany(mappedBy = "socialUsers", cascade = CascadeType.ALL)
     private Set<Follow> followers = new HashSet<>();
 

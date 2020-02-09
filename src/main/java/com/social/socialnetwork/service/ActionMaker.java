@@ -9,7 +9,7 @@ import java.util.List;
  * factory that managed action of social network
  */
 @Service
-public class ActionFactory {
+public class ActionMaker {
 
     private Action posting;
 
@@ -19,7 +19,7 @@ public class ActionFactory {
 
     private Action wall;
 
-    public ActionFactory(Action posting, Action userPage, Action following, Action wall) {
+    public ActionMaker(Action posting, Action userPage, Action following, Action wall) {
         this.posting = posting;
         this.userPage = userPage;
         this.following = following;

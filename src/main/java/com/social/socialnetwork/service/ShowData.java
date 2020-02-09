@@ -3,7 +3,7 @@ package com.social.socialnetwork.service;
 import java.time.Instant;
 
 /**
- * interface for output of @{@link ActionFactory}
+ * interface for output of @{@link ActionMaker}
  */
 public interface ShowData {
 
